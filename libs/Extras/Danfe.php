@@ -99,6 +99,20 @@ class Danfe extends CommonNFePHP implements DocumentoNFePHP
      * @var boolean
      */
     public $descProdQuebraLinha=true;
+
+    /**
+     * Parâmetro da quantidade de casas decimais na exibição do valor unitário do produto.
+     *
+     * @var integer
+     */
+    public $qtdeCasasDecimaisValorUnitario=4;
+
+    /**
+     * Parâmetro da quantidade de casas decimais na exibição da quantidade do produto.
+     *
+     * @var integer
+     */
+    public $qtdeCasasDecimaisQtdeProdutos=4;
     // FIM ATRIBUTOS DE PARÂMETROS DE EXIBIÇÃO
 
     /**
@@ -2566,11 +2580,11 @@ class Danfe extends CommonNFePHP implements DocumentoNFePHP
                     $alinhamento = 'R';
                 }
                 // QTDADE
-                $texto = number_format($prod->getElementsByTagName("qCom")->item(0)->nodeValue, 4, ",", ".");
+                $texto = number_format($prod->getElementsByTagName("qCom")->item(0)->nodeValue, $this->qtdeCasasDecimaisQtdeProdutos, ",", ".");
                 $this->pTextBox($x, $y, $w7, $h, $texto, $aFont, 'T', $alinhamento, 0, '');
                 $x += $w7;
                 // Valor Unitário
-                $texto = number_format($prod->getElementsByTagName("vUnCom")->item(0)->nodeValue, 4, ",", ".");
+                $texto = number_format($prod->getElementsByTagName("vUnCom")->item(0)->nodeValue, $this->qtdeCasasDecimaisValorUnitario, ",", ".");
                 $this->pTextBox($x, $y, $w8, $h, $texto, $aFont, 'T', $alinhamento, 0, '');
                 $x += $w8;
                 // Valor do Produto
